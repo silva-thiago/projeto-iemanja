@@ -25,3 +25,35 @@ int Expressao::validaCaracteres(){
 	return 0;
 
 }
+
+bool Expressao::validaParenteses(){
+
+	stack<char> expTemp;
+
+	 bool valid = false;
+
+	 for(int i=0; i < expressao.size(); i++) {
+		//busca abertura `(`
+		if(expressao[i] == '(')
+		 	expTemp.push(expressao[i]);
+		//caso entro um fechamento `)` 	
+		else if(expressao[i] == ')'){ 
+				//verifica se tem um de abertura na pilha (pilha limpa nao tem expTemp.empty() ==true)
+	  		 	if(expTemp.empty())
+			  		return false;
+			  	else
+	  				expTemp.pop(); //se tiver retira... e prossegue a varredura
+ 		}
+ 	}
+ 	
+ 	//pilha tem q esta vazia no final (true)
+ 	valid = expTemp.empty();
+
+  if(valid)
+  	return true;
+  else
+  	return false;
+}
+
+
+

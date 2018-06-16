@@ -34,7 +34,7 @@ public:
 
 	void validaNumeros();
 
-	void validaParenteses();
+	bool validaParenteses();
 
 	void expressaoMalformada();
 
