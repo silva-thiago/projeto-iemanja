@@ -2,7 +2,7 @@
 # Created by Bruno César
 # 			 David Flanklin
 #			 Eliaquin
-#			 Thiago José
+#			 Thiago Silva
 #			 Willian Talles
 # Data:17/06/2018
 #
