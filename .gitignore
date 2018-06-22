@@ -1,5 +1,7 @@
 # Prerequisites
 #*.d
+doc/*
+src/homolog.cpp
 
 # Compiled Object files
 #*
@@ -7,6 +9,7 @@
 #*.lo
 #*.o
 #*.obj
+build/*
 
 # Precompiled Headers
 #*.gch
@@ -26,13 +29,14 @@
 #*.la
 #*.a
 #*.lib
+lib/*
 
 # Executables
 #*.exe
 #*.out
 #*.app
+bin/*
 
-bin*
-build/*
-doc/*
-lib/*
+
+
+
