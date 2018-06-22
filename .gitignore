@@ -2,6 +2,7 @@
 #*.d
 doc/*
 src/homolog.cpp
+include/lista1.h
 
 # Compiled Object files
 #*
