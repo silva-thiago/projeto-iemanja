@@ -15,6 +15,8 @@ class Expressao {
 private:
 
 	string expressao;
+	//LinkedList numeros -> Fila numeros // quando a fila estiver pronta ?
+	LinkedList<float> numeros;
 	list<string> filaEntrada;
 	list<string> filaSaida;
 	stack<string> operadores;
@@ -32,7 +34,7 @@ public:
 	//valida a expressao <retorna posicao do caractere invalido ou 0=ok>
 	int validaCaracteres();
 
-	void validaNumeros();
+	int validaNumeros();
 
 	bool validaParenteses();
 
