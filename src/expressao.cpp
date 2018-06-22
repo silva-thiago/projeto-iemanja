@@ -42,19 +42,19 @@ int Expressao::validaCaracteres(){
 }
 
 int Expressao::validaNumeros(){
-	//iterador que percorre a fila de entrada
-	auto iterador = &filaEntrada.front();
+	//'iterador' que percorre a fila de entrada	
+	string * iterador = &filaEntrada.front();
 	//auxiliar para manipular variavél no código como 'aux' ao invés de '*iterador'
 	string aux = *iterador;	
 	
 	//conta quantos pontos um número possui
-	int contPontos = 0;
+	short contPontos = 0;
 	
 	//Obtem o indice de um número na string da expressão presente no arquivo
 	int indiceNaExpressao = 0;
 
 	//tamanho da string presente na variável 'aux'
-	int auxTam = 0;
+	unsigned auxTam = 0;
 	
 	//indica se um bloco da expressão possui algarismos ou não (se é um número)
 	bool possuiNum = false;
@@ -64,7 +64,7 @@ int Expressao::validaNumeros(){
 
 	
 	//percorre a fila de entrada
-	for(int i = 0; i < filaEntrada.size(); i++){
+	for(unsigned i = 0; i < filaEntrada.size(); i++){
 
 		//a variável possuiNum é reinicializada para false
 		possuiNum = false;				
@@ -80,7 +80,7 @@ int Expressao::validaNumeros(){
 		
 		
 		//analisa se o bloco da expressão atual possui algarismos (0-9)
-		for(int j = 0; j < auxTam; j++){
+		for(unsigned j = 0; j < auxTam; j++){
 			if(aux[j] >= 48 && aux[j] <= 57){
 				//algarismo encontrado
 				possuiNum = true;
@@ -111,10 +111,8 @@ int Expressao::validaNumeros(){
 				return auxTam+indiceNaExpressao;
 			}
 
-			//percorre o bloco da fila de entrada indicado pelo contador i;
-			//começa no j = 1 e vai até auxTam-1 porque os verificações no inicio e
-			//fim já foram realizadas acima
-			for(int j = 1; j < auxTam-1; j++){				
+			//percorre o bloco da fila de entrada indicado pelo contador i;			
+			for(unsigned j = 0; j < auxTam; j++){				
 				//verifica se o caractere atual é um ponto
 				if(aux[j] == '.'){
 					contPontos++;
