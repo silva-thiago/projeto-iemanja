@@ -3,7 +3,7 @@
  * @brief	Implementação da classe ListaLigada em C++
  * @author	Bruno César L. Silva
  * @since	21/06/2018
- * @date	21/06/2018
+ * @date	22/06/2018
  */
 
 #ifndef LISTALIGADA_H
@@ -88,7 +88,7 @@ public:
 	* @brief Método para verificar se a lista está vazia
 	* @return Retorna verdadeiro ou falso em relação a lista vazia
 	*/
-	bool Vazio();
+	bool vazio();
 
 	/**
 	* @brief Método para imprimir o conteúdo da lista
@@ -117,7 +117,7 @@ ListaLigada<T>::~ListaLigada() {
 }
 
 template <typename T>
-bool ListaLigada<T>::Vazio() {
+bool ListaLigada<T>::vazio() {
 	return tamanho == 0;
 }
 
@@ -132,7 +132,7 @@ void ListaLigada<T>::insereNoInicio( T conteudo ) {
 	// cabeca aponta para o novo nó, tornando o novoNo como primeiro da lista
 	cabeca->proximo = novoNo;
 
-	if( Vazio() )
+	if( vazio() )
 		cauda->proximo = novoNo;
 
 	tamanho++;
@@ -144,12 +144,12 @@ void ListaLigada<T>::insereNoFinal( T conteudo ) {
 	novoNo->conteudo = conteudo;
 	novoNo->proximo = nullptr;
 
-	if( !Vazio() )
+	if( !vazio() )
 		cauda->proximo->proximo = novoNo;
 	
 	cauda->proximo = novoNo;
 
-	if( Vazio() )
+	if( vazio() )
 		cabeca->proximo = novoNo;
 
 	tamanho++;
