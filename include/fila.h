@@ -26,10 +26,9 @@ std::ostream& operator<<( std::ostream&, Fila<T> const & );
 */
 template <typename T>
 class Fila{
+    ListaLigada<T> fila; /**< Container para armazenar conteúdo da fila. */
 
-    public:
-
-        ListaLigada<T> fila; /**< Container para armazenar conteúdo da fila. */
+    public:      
 
         /**
         * @brief Método construtor padrão de Fila
@@ -60,13 +59,17 @@ class Fila{
         */
         int getTamanho();
 
+        T getPrimeiroElemento();
+
         bool evazio();
+
+        void imprimir();
 
         /**
         * @brief Sobrecarga do operador de inserção.
         * @detail imprime na saída padrão as informações da fila circular
         * @param ostream &o operador de inserção
-        * @param Fila<T> l uma instância de Fila
+        * @param Fila<T> f uma instância de Fila
         * @return retorna a instância do operador de inserção
         */
         friend std::ostream& operator<< <T>( std::ostream&, Fila<T> const &f);
@@ -74,7 +77,7 @@ class Fila{
 };
 
 template <typename T>
-Fila<T>::Fila(): tamanho( 0 ){}
+Fila<T>::Fila(){}
 
 template <typename T>
 Fila<T>::~Fila(){}
@@ -89,8 +92,8 @@ bool Fila<T>::insereNoFinal( T conteudo ){
 }
 
 template <typename T>
-bool Fila<T>::RemoveNoInicio(){
-    this->fila.RemoveNoInicio();
+bool Fila<T>::removeNoInicio(){
+    this->fila.remove(0);
     //this->tamanho--;
 
     return true;
@@ -102,15 +105,28 @@ int Fila<T>::getTamanho(){
 }
 
 template <typename T>
+T Fila<T>::getPrimeiroElemento(){
+    return fila.getPrimeiroElemento();
+}
+
+template <typename T>
 bool Fila<T>::evazio(){
     return fila.vazio();
 }
 
 template <typename T>
-std::ostream& operator<< ( std::ostream& o, Fila<T> const &l) {
-    o << l.lista;
+void Fila<T>::imprimir(){
+    fila.imprimir();
+}
 
-	return o;
+template <typename T>
+std::ostream& operator<< ( std::ostream& o, Fila<T> const &f) {
+    //auto atual = f.cabeca;
+    //o << f.imprimir();
+/* 
+    for(int i = 0; i < (int)f.getTamanho(); i++)
+        o << f.getElemento(i);
+ */    return o;
 }
 
 #endif

@@ -67,6 +67,10 @@ public:
 	*/
 	T    getElemento( int indice );
 
+	T	 getPrimeiroElemento();
+
+	T	 getUltimoElemento();
+
 	/**
 	* @brief Método para remover um valor da lista
 	* @param T - Recebe um valor do tipo int como argumento
@@ -191,6 +195,16 @@ T ListaLigada<T>::getElemento( int indice ){
 	}
 
 	return novoNo->conteudo;
+}
+
+template <typename T>
+T	 ListaLigada<T>::getPrimeiroElemento(){
+	return this->cabeca->proximo->conteudo;
+}
+
+template <typename T>
+T	 ListaLigada<T>::getUltimoElemento(){
+	return this->cauda->proximo->conteudo;
 }
 
 template <typename T>
