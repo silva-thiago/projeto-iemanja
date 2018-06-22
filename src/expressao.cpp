@@ -1,5 +1,9 @@
 #include "expressao.h"
 #include <iostream>
+#include <sstream>
+
+using std::queue;
+using std::stringstream;
 
 Expressao::Expressao():expressao(""){}
 Expressao::Expressao(string expressao_):expressao(expressao_){}
@@ -8,117 +12,130 @@ Expressao::~Expressao(){
 }
 
 int Expressao::validaCaracteres(){
-	
+	stringstream ss;
+	string aux= "";
 	//varre a string caractere a caractere
 	for(int i=0; expressao[i] !='\0'; i++){
 			//verifica caracteres validos
-			if(((expressao[i] == '+') || (expressao[i] == '-') || (expressao[i] == '*') || (expressao[i] == '/') || (expressao[i] == '^') ||
-			   (expressao[i] == ' ') || (expressao[i] == '(') || (expressao[i] == ')') || (expressao[i] >= 46)) && (expressao[i] <= 57)){
-			}
-			else{ 
-				//retorna a posicao
+			if(((expressao[i] == '+') || (expressao[i] == '-') || (expressao[i] == '*') || (expressao[i] == '^') || 
+				(expressao[i] == ' ') || (expressao[i] == '(') || (expressao[i] == ')') || (expressao[i] >= 46)) && (expressao[i] <= 57)){
+					
+					//adiciona espaco entre os caractere para poder separar no buffer
+					if((expressao[i] == '+') || (expressao[i] == '-') || (expressao[i] == '*') || (expressao[i] == '^') || 
+					  (expressao[i] == ' ') || (expressao[i] == '(') || (expressao[i] == ')')){
+						
+					   ss << " "<< expressao[i] << " " ;
+					}else
+						ss << expressao[i];
+			}else{ 
+				//retorna a posicao (caso de erro)
 				return i + 1;
 			}
 	}
-
+	//adiciona conteudo do buffer na fila
+	while(ss >> aux){
+		filaEntrada.push(aux);
+	}
 	//expressao ok ok=0
 	return 0;
 
 }
 
 int Expressao::validaNumeros(){
-	//auxiliar para manipular variavél no código como 'aux' ao invés de 'filaEntradaTemp.GetElement(i)'
-	auto aux = filaEntradaTemp.GetElement(0);	
+	//iterador que percorre a fila de entrada
+	auto iterador = &filaEntrada.front();
+	//auxiliar para manipular variavél no código como 'aux' ao invés de '*iterador'
+	string aux = *iterador;	
 	
 	//conta quantos pontos um número possui
-	int cont_pontos = 0;
+	int contPontos = 0;
 	
-	//indica o sinal para adicionar ou não um número para a fila de números
-	int indice_na_expressao = 0;
+	//Obtem o indice de um número na string da expressão presente no arquivo
+	int indiceNaExpressao = 0;
 
-	//tamanho da variável auxiliar
-	int aux_tam = 0;
+	//tamanho da string presente na variável 'aux'
+	int auxTam = 0;
 	
 	//indica se um bloco da expressão possui algarismos ou não (se é um número)
-	bool possui_num = false;
+	bool possuiNum = false;
 	
 	//Mensagem de erro para número inválido;
 	string msg = "Erro 2: Número inválido encontrado a partir da posição ";
 
 	
 	//percorre a fila de entrada
-	for(int i = 0; i < filaEntradaTemp.Length(); i++){
+	for(int i = 0; i < filaEntrada.size(); i++){
+
+		//a variável possuiNum é reinicializada para false
+		possuiNum = false;				
 		
-		//a variável possui_num é reinicializada para false
-		possui_num = false;				
-		
-		//o contador de pontos recebe o valor 0
-		cont_pontos = 0;	
+		//o contador de pontos é zerado
+		contPontos = 0;	
 
 		//aux recebe o conteúdo de um bloco da fila de entrada na posição indicada pelo contador i
-		aux = filaEntradaTemp.GetElement(i);
+		aux = *iterador;
 
 		//a variável recebe o tamanho atual da string aux
-		aux_tam = aux.size();
+		auxTam = aux.size();
 		
 		
-		//analisa se o bloco da expressão atual possui numeros
-		for(int j = 0; j < aux_tam; j++){
+		//analisa se o bloco da expressão atual possui algarismos (0-9)
+		for(int j = 0; j < auxTam; j++){
 			if(aux[j] >= 48 && aux[j] <= 57){
 				//algarismo encontrado
-				possui_num = true;
+				possuiNum = true;
 				break;
 			}
 		}
 
 
 		//se o bloco da expressão possuir algum algarismo...
-		if(possui_num){
+		if(possuiNum){
 
 			//procura a posição do bloco aux na expressão inicial
-			indice_na_expressao = expressao.find(aux);	
+			indiceNaExpressao = expressao.find(aux);	
 
 			//verifica se o primeiro caractere de um número é um ponto
 			if(aux[0] == '.'){				
-				std::cout << msg << indice_na_expressao+1 << "." << std::endl;			
+				std::cout << msg << indiceNaExpressao+1 << "." << std::endl;			
 
 				//retorna a posição do primeiro caractere inválido do número
-				return indice_na_expressao+1;
+				return indiceNaExpressao+1;
 			}
 
 			//verifica se o último caractere de um número é um ponto
-			if(aux[aux_tam-1] == '.'){						
-				std::cout << msg << aux_tam+indice_na_expressao << "." << std::endl;	
+			if(aux[auxTam-1] == '.'){						
+				std::cout << msg << auxTam+indiceNaExpressao << "." << std::endl;	
 
 				//retorna a posição do primeiro caractere inválido do número
-				return aux_tam+indice_na_expressao;
+				return auxTam+indiceNaExpressao;
 			}
 
-			//percorre o bloco da fila de entrada indicado pelo contador i
-			for(int j = 0; j < aux_tam; j++){				
+			//percorre o bloco da fila de entrada indicado pelo contador i;
+			//começa no j = 1 e vai até auxTam-1 porque os verificações no inicio e
+			//fim já foram realizadas acima
+			for(int j = 1; j < auxTam-1; j++){				
 				//verifica se o caractere atual é um ponto
 				if(aux[j] == '.'){
-					cont_pontos++;
-					if(cont_pontos > 1){							
-						std::cout << msg << j+indice_na_expressao+1 << "." << std::endl;
+					contPontos++;
+					if(contPontos > 1){							
+						std::cout << msg << j+indiceNaExpressao+1 << "." << std::endl;
 
 						//retorna a posição do primeiro caractere inválido do número
-						return j+indice_na_expressao+1;
+						return j+indiceNaExpressao+1;
 					} 
 
 				//verifica se o caractere atual do bloco não é um número
 				}else if(aux[j] < 48 || aux[j] > 57){																																										
-					std::cout << msg << j+indice_na_expressao+1 << "." << std::endl;
+					std::cout << msg << j+indiceNaExpressao+1 << "." << std::endl;
 
 					//retorna a posição do primeiro caractere inválido do número					
-					return j+indice_na_expressao+1;																																	
+					return j+indiceNaExpressao+1;																																	
 				}	
-			}		
-
-			//adiciona à fila de números, o numero validado pelos "for"s acima;
-			//stof converte a string aux em um número 
-			numeros.PushBack(std::stof(aux));		
-		}			
+			}			
+		}		
+		//incrementa o iterador para acessar o próximo bloco da fila de entrada
+		iterador++;	
 	}
 	//retorna 0 caso não hajam erros
 	return 0;

@@ -4,8 +4,8 @@
 #include <string>
 using std::string;
 
-#include <list>
-using std::list;
+#include <queue>
+using std::queue;
 
 #include <stack>
 using std::stack;
@@ -15,10 +15,8 @@ class Expressao {
 private:
 
 	string expressao;
-	//LinkedList numeros -> Fila numeros // quando a fila estiver pronta ?
-	LinkedList<float> numeros;
-	list<string> filaEntrada;
-	list<string> filaSaida;
+	queue<string> filaEntrada;
+	queue<string> filaSaida;
 	stack<string> operadores;
 
 
