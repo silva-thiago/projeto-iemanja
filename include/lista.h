@@ -1,7 +1,7 @@
 /**
  * @file	lista.h
  * @brief	Implementação da classe ListaLigada em C++
- * @author	Bruno César L. Silva
+ * @author	Bruno César Lopes Silva
  * @since	21/06/2018
  * @date	22/06/2018
  */
@@ -67,15 +67,25 @@ public:
 	*/
 	T    getElemento( int indice );
 
+	/**
+	* @brief Método que retorna o primeiro elemento da lista
+	* @return Retorna o conteúdo da primeira posição da lista
+	*/
 	T	 getPrimeiroElemento();
 
+	/**
+	* @brief Método que retorna o última elemento da lista
+	* @return Retorna o conteúdo da última posição da lista
+	*/
 	T	 getUltimoElemento();
+
+	bool removeNoInicio();
 
 	/**
 	* @brief Método para remover um valor da lista
 	* @param T - Recebe um valor do tipo int como argumento
 	*/
-	void remove( int indice );
+	bool remove( int indice );
 
 	/**
 	* @brief Método para limpar todo o conteúdo da lista
@@ -208,20 +218,39 @@ T	 ListaLigada<T>::getUltimoElemento(){
 }
 
 template <typename T>
-void ListaLigada<T>::remove( int indice ){
-	struct no<T> * novoNo = new struct no<T>;
-	novoNo = cabeca;
+bool ListaLigada<T>::removeNoInicio(){
+	if(cabeca == nullptr) return false;
 
-	for( int i = 0; i <= indice-1; i++ ){
-		novoNo = novoNo->proximo;
-		if( i == indice-1 ){			
-			novoNo->proximo = novoNo->proximo->proximo;			
-		}
+	cabeca = cabeca->proximo;
+	tamanho--;
+
+	return true;
+}
+
+template <typename T>
+bool ListaLigada<T>::remove(int indice){
+	// Verica se a posição selecionada encontra-se no intervalo
+	if(indice < 0 || indice >= tamanho) return false;
+	// Se a posição for a primeira chama RemoverNoInicio
+	if(indice == 0) return removeNoInicio();
+	// Guarda posição atual da lista definida na cabeca
+	struct no<T> * atual = new struct no<T>;
+	atual = cabeca->proximo;
+	int posicaoAtual = 0;
+
+	while(atual->proximo->proximo != nullptr && posicaoAtual < (indice-1)){
+		// Avança um nó da lista armazenando a posição de memória desta
+		atual = atual->proximo;
+		posicaoAtual++;
 	}
 
-	if(tamanho > 0){
-		tamanho--;
-	}
+	// Atual passa a apontar para atual+2 posições de memória,
+	// ou seja, apontará para o próximo de seu sucessor atual
+	atual->proximo = atual->proximo->proximo;
+	// O tamanho da lista é decrementado em 1
+	tamanho--;
+
+	return true;
 }
 
 template <typename T>

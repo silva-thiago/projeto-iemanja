@@ -1,8 +1,8 @@
 /**
  * @file	fila.h
  * @brief	Implementação da classe Fila em C++
- * @author	Bruno César L. Silva
- * @since	22/06/2018
+ * @author	Bruno César Lopes Silva
+ * @since	21/06/2018
  * @date	22/06/2018
  */
 
@@ -22,7 +22,7 @@ std::ostream& operator<<( std::ostream&, Fila<T> const & );
 /**
 * @brief Implementacao da classe Fila
 * @detail Define um template de fila
-* como classe derivada de Lista
+* usando como container padrão uma lista
 */
 template <typename T>
 class Fila{
@@ -59,15 +59,26 @@ class Fila{
         */
         int getTamanho();
 
+        /**
+        * @brief Método que retorna o primeiro elemento da fila
+        * @return Retorna o conteúdo da primeira posição da fila
+        */
         T getPrimeiroElemento();
 
+        /**
+        * @brief Método para verificar se a fila está vazia
+        * @return Retorna verdadeiro ou falso em relação a fila vazia
+        */
         bool evazio();
 
+        /**
+        * @brief Método para imprimir o conteúdo da fila
+        */
         void imprimir();
 
         /**
         * @brief Sobrecarga do operador de inserção.
-        * @detail imprime na saída padrão as informações da fila circular
+        * @detail imprime na saída padrão as informações da fila
         * @param ostream &o operador de inserção
         * @param Fila<T> f uma instância de Fila
         * @return retorna a instância do operador de inserção
@@ -85,17 +96,14 @@ Fila<T>::~Fila(){}
 template <typename T>
 bool Fila<T>::insereNoFinal( T conteudo ){
     this->fila.insereNoFinal( conteudo );
-    //this->tamanho++;
-    //fila.getTamanho();
-
+    
     return true;
 }
 
 template <typename T>
 bool Fila<T>::removeNoInicio(){
     this->fila.remove(0);
-    //this->tamanho--;
-
+    
     return true;
 }
 

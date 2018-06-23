@@ -3,6 +3,7 @@
 doc/*
 src/homolog.cpp
 include/lista1.h
+include/pilha.h
 
 # Compiled Object files
 #*

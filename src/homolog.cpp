@@ -5,25 +5,64 @@ using std::endl;
 using std::string;
 #include "lista.h"
 #include "fila.h"
+#include "pilha.h"
 
 int main(){
-    Fila<string> fila;
+    Pilha<string> pilha;
     ListaLigada<string> lista;
+    /* 
+    lista.insereNoInicio("Bruno");
+    lista.insereNoInicio("Willian");
+    lista.insereNoInicio("Thiago");
+    lista.insereNoInicio("Mika");
+    lista.insereNoInicio("Agatha");
+    lista.imprimir();
+    cout << lista.getTamanho() << endl;
+    lista.remove(5);
+    lista.imprimir();
+ */
+ 
+    pilha.insereNoTopo("Bruno");
+    pilha.insereNoTopo("Willian");
+    pilha.insereNoTopo("Thiago");
+    pilha.insereNoTopo("Mika");
+    pilha.insereNoTopo("Agatha");
+    pilha.imprimir();
     
+    cout << pilha.evazio() << endl;
+    cout << pilha.topo() << endl;
+
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
+    pilha.removeDoTopo();
+    pilha.imprimir();
     
-
-    fila.insereNoFinal("Bruno");
-    fila.insereNoFinal("Willian");
-    fila.insereNoFinal("Thiago");
-    fila.insereNoFinal("Mika");
-    fila.insereNoFinal("Agatha");
-    fila.imprimir();
-    cout << fila;
-    cout << fila.evazio() << endl;
-    cout << fila.getPrimeiroElemento() << endl;
-
-    cout << fila;
     //cout << lista.getUltimoElemento() << endl;
+
     /*
     string nome = "Agatha";
     cout << lista.busca(nome) << endl;
