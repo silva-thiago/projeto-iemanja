@@ -45,7 +45,7 @@ public:
 	* @brief Método que insere valor no final da lista
 	* @param T - recebe o valor para o novo nó
 	*/
-	void insereNoFinal( T conteudo );
+	void insereNoFinal(T conteudo);
 
 	/**
 	* @brief Método que insere valor no inicio da lista
