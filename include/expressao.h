@@ -4,8 +4,8 @@
 #include <string>
 using std::string;
 
-#include <list>
-using std::list;
+#include <queue>
+using std::queue;
 
 #include <stack>
 using std::stack;
@@ -15,8 +15,8 @@ class Expressao {
 private:
 
 	string expressao;
-	list<string> filaEntrada;
-	list<string> filaSaida;
+	queue<string> filaEntrada;
+	queue<string> filaSaida;
 	stack<string> operadores;
 
 
@@ -32,7 +32,7 @@ public:
 	//valida a expressao <retorna posicao do caractere invalido ou 0=ok>
 	int validaCaracteres();
 
-	void validaNumeros();
+	int validaNumeros();
 
 	bool validaParenteses();
 
