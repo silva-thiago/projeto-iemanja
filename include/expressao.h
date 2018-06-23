@@ -1,5 +1,11 @@
 #ifndef EXPRESSAO_H
 #define EXPRESSAO_H
+#include <iostream>
+using std::cout;
+using std::endl;
+
+#include <sstream>
+using std::stringstream;
 
 #include <string>
 using std::string;
@@ -15,6 +21,8 @@ class Expressao {
 private:
 
 	string expressao;
+	//LinkedList numeros -> Fila numeros // quando a fila estiver pronta ?
+	//LinkedList<float> numeros;
 	queue<string> filaEntrada;
 	queue<string> filaSaida;
 	stack<string> operadores;
@@ -36,7 +44,9 @@ public:
 
 	bool validaParenteses();
 
-	void expressaoMalformada();
+	bool expressaoMalformada();
+
+	bool validaExpressao();
 
 
 };
