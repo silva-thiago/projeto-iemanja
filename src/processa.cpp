@@ -173,7 +173,7 @@ double Processa::calculoPosFixa(Fila<string> entrada){
                 operandos.insereNoTopo(expressao);
                 break;
         }      
-        entrada.removeNoInicio(); //falha aq ?
+        entrada.removeNoInicio(); 
     }
 
     return stod(operandos.topo());
