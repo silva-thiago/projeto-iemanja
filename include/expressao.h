@@ -11,9 +11,7 @@ using std::stringstream;
 using std::string;
 
 #include "fila.h"
-
-#include <stack>
-using std::stack;
+#include "pilha.h"
 
 #include <algorithm> 
 
@@ -22,11 +20,9 @@ class Expressao {
 private:
 
 	string expressao;
-	//LinkedList numeros -> Fila numeros // quando a fila estiver pronta ?
-	//LinkedList<float> numeros;
 	Fila<string> filaEntrada;
 	Fila<string> filaSaida;
-	stack<string> operadores;
+	Pilha<string> operadores;
 
 
 public:
@@ -46,7 +42,7 @@ public:
 	bool validaParenteses();
 
 	bool expressaoMalformada();
-
+	//apos validacoes retorna a fila caso ok
 	Fila<string> validaExpressao();
 
 
