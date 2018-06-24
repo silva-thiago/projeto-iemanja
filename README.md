@@ -1,10 +1,10 @@
-# IEMANJA
-#### Identificador de Expressões Malformadas e Avaliador de Notações Julgadas Adequadas
+# IEMANJA<br>
+#### Identificador de Expressões Malformadas e Avaliador de Notações Julgadas Adequadas<br>
 
-###### UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - UFRN
-Projeto final da disciplina de Estruturas de Dados Básicas I
-IMD0029 – ESTRUTURAS DE DADOS BÁSICAS I 
-Professor Alyppyo Coutinho
+###### UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - UFRN<br>
+Projeto final da disciplina de Estruturas de Dados Básicas I<br>
+IMD0029 – ESTRUTURAS DE DADOS BÁSICAS I <br>
+Professor Alyppyo Coutinho<br>
 
 ### Objetivo
 O objetivo desse projeto é verificar o domínio do conteúdo de pilhas, filas e deques por parte dos alunos da disciplina. Para isso, essas estruturas serão utilizadas na implementação de um identificador/avaliador de expressões matemáticas simples, o qual analisará expressões passadas, indicando se elas são válidas ou não e divulgando o resultado daquelas que forem consideradas corretas.
@@ -24,7 +24,7 @@ A entrada de dados consistirá de um arquivo de texto simples, o qual conterá d
 ### Estruturas utilizadas
 - Pilha 
 - Fila
-- Estrutura Fundamental: **Lista Simplesmente Encadeada** 
+- Estrutura Fundamental: **Lista Simplesmente Encadeada** <br>
 (forma de implementação das estruturas)
 
 ### Instruções de compilação
@@ -39,20 +39,17 @@ Ultilizando o utilitário make:
 > copila com a flag -g para debug
 
 ### **Executando o programa**
-parametros para executar:
+Parametros para executar:
 1. nome do executavel
 1. caminho absoluto para o arquivo de expressões
-EXEMPLO:
+### EXEMPLO:
 >./prog /caminhodoarquivo.txt
 
-# Autores
-[Eliaquim dos Santos](https://github.com/eliaquimdossantos "Eliaquim dos Santos")
-
-[David Franklin](https://github.com/d4v3s "David Franklin")
-
-[Bruno César](https://github.com/babbujah "Bruno César")
-
-[Thiago Silva](https://github.com/silva-thiago "Thiago Silva")
+## Autores
+[Eliaquim dos Santos](https://github.com/eliaquimdossantos "Eliaquim dos Santos")<br>
+[David Franklin](https://github.com/d4v3s "David Franklin")<br>
+[Bruno César](https://github.com/babbujah "Bruno César")<br>
+[Thiago Silva](https://github.com/silva-thiago "Thiago Silva")<br>
 
 
 
