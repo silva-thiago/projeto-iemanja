@@ -10,11 +10,12 @@ using std::stringstream;
 #include <string>
 using std::string;
 
-#include <queue>
-using std::queue;
+#include "fila.h"
 
 #include <stack>
 using std::stack;
+
+#include <algorithm> 
 
 class Expressao {
 
@@ -23,8 +24,8 @@ private:
 	string expressao;
 	//LinkedList numeros -> Fila numeros // quando a fila estiver pronta ?
 	//LinkedList<float> numeros;
-	queue<string> filaEntrada;
-	queue<string> filaSaida;
+	Fila<string> filaEntrada;
+	Fila<string> filaSaida;
 	stack<string> operadores;
 
 
@@ -46,7 +47,7 @@ public:
 
 	bool expressaoMalformada();
 
-	bool validaExpressao();
+	Fila<string> validaExpressao();
 
 
 };
