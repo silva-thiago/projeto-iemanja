@@ -1,17 +1,54 @@
+/**
+ * @file	expressao.cpp
+ * @brief	Implementação da classe expressao em C++
+ * @author	David e Eliaquim
+ * @since	21/06/2018
+ * @date	24/06/2018
+ */
 #include "expressao.h"
 #include <iostream>
 #include <sstream>
 
-using std::queue;
 using std::stringstream;
 
+/**
+* @brief Método construtor padrão de expressão
+*/
 Expressao::Expressao():expressao(""){}
-Expressao::Expressao(string expressao_):expressao(expressao_){}
-Expressao::~Expressao(){
 
+/**
+* @brief Método construtor parametizado de expressão
+* @param string expressao_ - recebe uma string a ser processada
+*/
+Expressao::Expressao(string expressao_):expressao(expressao_){}
+
+/**
+* @brief Método destrutor de expressão
+*/
+Expressao::~Expressao(){}
+
+/** 
+ * @breaf atribui uma string ao atributo da classe espressão
+ * @param string expressao_ - recebe uma string a ser atribuida
+*/
+void Expressao::setExpressao(string expressao_){
+	expressao = expressao_;
 }
-//funcao que verifica se exite algum caractere invalido na expressao
-//em seguinda adiciona em uma fila de entrada
+
+/** 
+ * @breaf retorna atributo da classe
+ * @return o atributo da classe - string espressão
+*/
+string Expressao::getExpressao(){
+	return expressao;
+}
+/** 
+ * @breaf Método que verifica se há caracteres inválidos na expressão
+ * @detail Após a validacao adiciona um espaco entre os caracteres para
+ * poder o buffer separar em substrings, em seguida o buffer e adicionado 
+ * em uma fila, dividido em substrings.
+ * @return Retorna 0 para expressão válida ou a posicão do caractere inválido
+ */
 int Expressao::validaCaracteres(){
 	stringstream ss;
 	string aux= "";
@@ -35,16 +72,21 @@ int Expressao::validaCaracteres(){
 	}
 	//adiciona conteudo do buffer na fila
 	while(ss >> aux){
-		filaEntrada.push(aux);
+		filaEntrada.insereNoFinal(aux);
 	}
 	//expressao ok ok=0
 	return 0;
 
 }
-//funcao que verifica se os numeros da expressao sao validos
+
+/** 
+ * @breaf Método que verifica se os numeros da expressão são validos inteiro e real
+ * @return Retorna 0 para expressão válida ou a posicão do número inválido
+ */
 int Expressao::validaNumeros(){
+	/*
 	//iterador que percorre a fila de entrada
-	auto iterador = &filaEntrada.front();
+	auto iterador = &filaEntrada.getPrimeiroElemento();
 	//auxiliar para manipular variavél no código como 'aux' ao invés de '*iterador'
 	string aux = *iterador;	
 	
@@ -61,7 +103,7 @@ int Expressao::validaNumeros(){
 	bool possuiNum = false;
 	
 	//percorre a fila de entrada
-	for(int i = 0; i < (int) filaEntrada.size(); i++){
+	for(int i = 0; i < (int) filaEntrada.getTamanho(); i++){
 
 		//a variável possuiNum é reinicializada para false
 		possuiNum = false;				
@@ -130,33 +172,43 @@ int Expressao::validaNumeros(){
 		//incrementa o iterador para acessar o próximo bloco da fila de entrada
 		iterador++;	
 	}
+	
 	//retorna 0 caso não hajam erros
+	*/
 	return 0;
+	
 }
 
-//funcao que verifica se exite um parenteses de fechamento para cada um de abertura
+/** 
+ * @breaf Método que verifica o balanceamento dos parênteses
+ * @detail Primeiramente varre a string em busca de um parenteses de abertura
+ * em seguida adiciona o mesmo em uma pilha, continua na varredura da string
+ * em busca de um parenteses de fechamento, ao encontrar verifica se exite um
+ * parenteses de abertura na pilha, caso nao exista, os mesmos nao estao balanceados.
+ * @return Retorna true para correto balanceamento e false para inválido
+ */
 bool Expressao::validaParenteses(){
 
-	stack<char> expTemp;
+	Pilha<char> expTemp;
 
 	 bool valid = false;
 
 	 for(int i=0; i < (int)expressao.size(); i++) {
 		//busca abertura `(`
 		if(expressao[i] == '(')
-		 	expTemp.push(expressao[i]);
-		//caso entro um fechamento `)` 	
+		 	expTemp.insereNoTopo(expressao[i]);
+		//caso encontre um fechamento `)` 	
 		else if(expressao[i] == ')'){ 
 				//verifica se tem um de abertura na pilha (pilha limpa nao tem expTemp.empty() ==true)
-	  		 	if(expTemp.empty())
+	  		 	if(expTemp.evazio())
 			  		return false;
 			  	else
-	  				expTemp.pop(); //se tiver retira... e prossegue a varredura
+	  				expTemp.removeDoTopo(); //se tiver retira... e prossegue a varredura
  		}
  	}
  	
  	//pilha tem q esta vazia no final (true)
- 	valid = expTemp.empty();
+ 	valid = expTemp.evazio();
 
   if(valid)
   	return true;
@@ -165,27 +217,32 @@ bool Expressao::validaParenteses(){
 }
 
 
-//funcao para verificar se exite algum operando sem ultilizar 
-
+/** 
+ * @breaf Método que verifica se todos os operadores aparecem entre os operandos
+ * @return Retorna true para expressão infixa correta e false para inválida
+ */
 bool Expressao::expressaoMalformada(){
 	int operando = 0;
 	int outros = 0;
 	int colchetes = 0;
 
-	while(!filaEntrada.empty()){
+	while(!filaEntrada.evazio()){
 		//conta os operandos
-		if((filaEntrada.front() == "+") || (filaEntrada.front() == "-") || (filaEntrada.front() == "*") || (filaEntrada.front() == "/")){
+		if((filaEntrada.getPrimeiroElemento() == "+") || (filaEntrada.getPrimeiroElemento() == "-") || (filaEntrada.getPrimeiroElemento() == "*") || (filaEntrada.getPrimeiroElemento() == "/")){
 			operando++;
-			filaEntrada.pop();
+			filaSaida.insereNoFinal(filaEntrada.getPrimeiroElemento());
+			filaEntrada.removeNoInicio();
 		}else
-			if((filaEntrada.front() == "(") || (filaEntrada.front() == ")")){ //conta os colchetes
+			if((filaEntrada.getPrimeiroElemento() == "(") || (filaEntrada.getPrimeiroElemento() == ")")){ //conta os colchetes
 
 				colchetes++;
-				filaEntrada.pop();
+				filaSaida.insereNoFinal(filaEntrada.getPrimeiroElemento());
+				filaEntrada.removeNoInicio();
 				
 			}else{
 				outros++;
-				filaEntrada.pop();
+				filaSaida.insereNoFinal(filaEntrada.getPrimeiroElemento());
+				filaEntrada.removeNoInicio();
 			}
 	}
 			
@@ -199,25 +256,33 @@ bool Expressao::expressaoMalformada(){
 
 }
 
-//funcao encarregada de fazer todas as outras verificacoes juntas
-bool Expressao::validaExpressao(){
+/** 
+ * @breaf Método que chama as demais validação
+ * @detail Ao chamar pelas validação se ocorrer erro imprimi a mensagem do erro
+ * e encerra o programa, caso passe por todas retorna a filaSaida da classe
+ * @return Retorna Fila<string> filaSaida
+ */
+Fila<string> Expressao::validaExpressao(){
 
 	if(validaCaracteres() != 0){
 		cout << "Erro 1 - Caractere inválido encontrado na posição " << validaCaracteres()  << "."<< endl;
-		return false;
-	}
+		exit(1);
+	}/*
 	if(validaNumeros()!=0){
 		cout << "Erro 2: Número inválido encontrado a partir da posição " << validaNumeros() << "." << endl;
-		return false;
-	}
+		exit(1);
+	}*/
 	if(!validaParenteses()){
 		cout << "Erro 3 - Os parênteses da expressão estão desbalanceados. " <<  endl;
+		exit(1);
 	}
 
 	if(!expressaoMalformada()){
 		cout << "Erro 4 - Expressão infixa malformada. " <<  endl;
+		exit(1);
 	}
 
-	//se passar por todas validacao retorna true=ok
-	return true;
+	//se passar por todas validacao retorna a fila
+	return filaSaida;
 }
+
