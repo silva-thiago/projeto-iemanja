@@ -1,13 +1,14 @@
 /**
  * @file	expressao.cpp
  * @brief	Implementação da classe expressao em C++
- * @author	David e Eliaquim
+ * @author	David Franklin e Eliaquim dos Santos Costa
  * @since	21/06/2018
  * @date	24/06/2018
  */
 #include "expressao.h"
 #include <iostream>
 #include <sstream>
+#include <iomanip>
 
 using std::stringstream;
 
@@ -84,19 +85,19 @@ int Expressao::validaCaracteres(){
  * @return Retorna 0 para expressão válida ou a posicão do número inválido
  */
 int Expressao::validaNumeros(){
-	/*
-	//iterador que percorre a fila de entrada
-	auto iterador = &filaEntrada.getPrimeiroElemento();
-	//auxiliar para manipular variavél no código como 'aux' ao invés de '*iterador'
-	string aux = *iterador;	
-	
+	//recebe a posição na expressão que possui o primeiro caractere inválido de um número inválido
+	int posicaoDoErro = 0;
+
+	//string que recebe cada substring que representa um número da expressão
+	string aux = "";
+		
 	//conta quantos pontos um número possui
 	int contPontos = 0;
 	
 	//Obtem o indice de um número na string da expressão presente no arquivo
 	int indiceNaExpressao = 0;
 
-	//tamanho da string presente na variável 'aux'
+	//tamanho da string/variável 'aux'
 	int auxTam = 0;
 	
 	//indica se um bloco da expressão possui algarismos ou não (se é um número)
@@ -104,20 +105,18 @@ int Expressao::validaNumeros(){
 	
 	//percorre a fila de entrada
 	for(int i = 0; i < (int) filaEntrada.getTamanho(); i++){
+		//recebe o conteúdo da fila de Entrada no índice i;
+		aux = filaEntrada+i;
 
 		//a variável possuiNum é reinicializada para false
 		possuiNum = false;				
 		
 		//o contador de pontos é zerado
 		contPontos = 0;	
-
-		//aux recebe o conteúdo de um bloco da fila de entrada na posição indicada pelo contador i
-		aux = *iterador;
-
+		
 		//a variável recebe o tamanho atual da string aux
 		auxTam = aux.size();
-		
-		
+
 		//analisa se o bloco da expressão atual possui algarismos (0-9)
 		for(int j = 0; j < auxTam; j++){
 			if(aux[j] >= 48 && aux[j] <= 57){
@@ -126,55 +125,49 @@ int Expressao::validaNumeros(){
 				break;
 			}
 		}
-
-
 		//se o bloco da expressão possuir algum algarismo...
 		if(possuiNum){
-
-			//procura a posição do bloco aux na expressão inicial
-			indiceNaExpressao = expressao.find(aux);	
-
 			//verifica se o primeiro caractere de um número é um ponto
 			if(aux[0] == '.'){				
-
-				//retorna a posição do primeiro caractere inválido do número
-				return indiceNaExpressao+1;
+				//procura a posição do bloco aux na expressão inicial
+				indiceNaExpressao = expressao.find(aux);				
+				posicaoDoErro = indiceNaExpressao + 1;	
+				//retorna a posição do primeiro caractere inválido do número						
+				return posicaoDoErro;
 			}
-
 			//verifica se o último caractere de um número é um ponto
-			if(aux[auxTam-1] == '.'){						
-
+			if(aux[auxTam-1] == '.'){															
+				//procura a posição do bloco aux na expressão inicial
+				indiceNaExpressao = expressao.find(aux);					
+				posicaoDoErro = auxTam + indiceNaExpressao;
 				//retorna a posição do primeiro caractere inválido do número
-				return auxTam+indiceNaExpressao;
+				return posicaoDoErro;
 			}
-
 			//percorre o bloco da fila de entrada indicado pelo contador i;
-			//começa no j = 1 e vai até auxTam-1 porque os verificações no inicio e
-			//fim já foram realizadas acima
-			for(int j = 1; j < auxTam-1; j++){				
+			for(int j = 0; j < auxTam; j++){				
 				//verifica se o caractere atual é um ponto
 				if(aux[j] == '.'){
 					contPontos++;
-					if(contPontos > 1){							
-
+					if(contPontos > 1){					
+						//procura a posição do bloco aux na expressão inicial
+						indiceNaExpressao = expressao.find(aux);									
+						posicaoDoErro = j + indiceNaExpressao + 1;
 						//retorna a posição do primeiro caractere inválido do número
-						return j+indiceNaExpressao+1;
+						return posicaoDoErro;
 					} 
-
 				//verifica se o caractere atual do bloco não é um número
-				}else if(aux[j] < 48 || aux[j] > 57){																																										
-
-					//retorna a posição do primeiro caractere inválido do número					
-					return j+indiceNaExpressao+1;																																	
+				}else if(aux[j] < 48 || aux[j] > 57){		
+					//procura a posição do bloco aux na expressão inicial
+					indiceNaExpressao = expressao.find(aux);																																														
+					posicaoDoErro = j + indiceNaExpressao + 1;				
+					//retorna a posição do primeiro caractere inválido do número
+					return posicaoDoErro;																																	
 				}	
 			}			
 		}		
-		//incrementa o iterador para acessar o próximo bloco da fila de entrada
-		iterador++;	
 	}
 	
 	//retorna 0 caso não hajam erros
-	*/
 	return 0;
 	
 }
@@ -217,6 +210,10 @@ bool Expressao::validaParenteses(){
 }
 
 
+/** 
+ * @breaf Método que verifica se todos os operadores aparecem entre os operandos
+ * @return Retorna true para expressão infixa correta e false para inválida
+ */
 /** 
  * @breaf Método que verifica se todos os operadores aparecem entre os operandos
  * @return Retorna true para expressão infixa correta e false para inválida
@@ -265,14 +262,28 @@ bool Expressao::expressaoMalformada(){
  */
 bool Expressao::validaExpressao(){
 
-	if(validaCaracteres() != 0){
-		cout << "Erro 1 - Caractere inválido encontrado na posição " << validaCaracteres()  << "."<< endl;
+	//variável auxiliar que recebe os valores retornados pelos métodos 
+	//validaCaracteres e validaNumeros
+	int retorno = 0; 
+
+	retorno = validaCaracteres();
+	if(retorno != 0){
+		cout << "Erro 1 - Caractere inválido encontrado na posição " << retorno  << "."<< endl;
+		cout << expressao << endl;
+		//adiciona uma 'seta' (^) apontando para o caractere inválido
+		cout << std::setfill (' ') << std::setw (retorno) << '^' << endl;	
 		return false;
-	}/*
-	if(validaNumeros()!=0){
-		cout << "Erro 2: Número inválido encontrado a partir da posição " << validaNumeros() << "." << endl;
+	}
+
+	retorno = validaNumeros();
+	if(retorno != 0){
+		cout << "Erro 2: Número inválido encontrado a partir da posição " << retorno << "." << endl;
+		cout << expressao << endl;
+		//adiciona uma 'seta' (^) apontando para o caractere inválido de um número
+		cout << std::setfill (' ') << std::setw (retorno) << '^' << endl;
 		return false;
-	}*/
+	}
+
 	if(!validaParenteses()){
 		cout << "Erro 3 - Os parênteses da expressão estão desbalanceados. " <<  endl;
 		return false;
@@ -294,4 +305,3 @@ Fila<string> Expressao::getFilaSaida(){
 
 	return filaSaida;
 }
-
