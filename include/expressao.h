@@ -1,6 +1,6 @@
 /**
  * @file	expressao.h
- * @brief	Cabeçalho da classe expressao em C++
+ * @brief	Cabeçalho da classe Expressao em C++
  * @author	David e Eliaquim
  * @since	21/06/2018
  * @date	24/06/2018
