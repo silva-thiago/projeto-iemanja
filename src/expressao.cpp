@@ -1,7 +1,7 @@
 /**
  * @file	expressao.cpp
  * @brief	Implementação da classe expressao em C++
- * @author	David Franklin e Eliaquim dos Santos Costa
+ * @author	David e Eliaquim
  * @since	21/06/2018
  * @date	24/06/2018
  */

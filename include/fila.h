@@ -1,7 +1,7 @@
 /**
  * @file    fila.h
  * @brief   Implementação da classe Fila em C++
- * @author  Bruno César Lopes Silva e Eliaquim dos Santos Costa
+ * @author  Bruno e Eliaquim
  * @since   21/06/2018
  * @date    24/06/2018
  */

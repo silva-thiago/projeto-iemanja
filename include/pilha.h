@@ -1,7 +1,7 @@
 /**
  * @file	pilha.h
  * @brief	Implementação da classe Pilha em C++
- * @author	Bruno César Lopes Silva
+ * @author	Bruno e Thiago
  * @since	22/06/2018
  * @date	22/06/2018
  */
