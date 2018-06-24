@@ -249,11 +249,12 @@ bool Expressao::expressaoMalformada(){
 
 	//numeros uma unidade a menos q os operandos
 	// colchetes par, abertura e fechamento
+	
 	if(operando == outros -1 && colchetes % 2 == 0)
 		return true;
 	else
 		return false;
-
+	
 }
 
 /** 

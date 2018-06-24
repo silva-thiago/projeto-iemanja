@@ -187,15 +187,17 @@ void Processa::run(){
     if (arquivo.is_open() && arquivo.good()){
         int c=0;
         while (!arquivo.eof()){ //enquanto end of file for false continua
-                cout << "----------------------------------------------------------------------" << endl << "Linha >" << c+1 <<"<" << endl;
-                getline(arquivo,line); // como foi aberto em modo texto(padrão)
-                Expressao res(line);
-                Fila<string> saida;
-                double resultado = 0;
-                saida = res.validaExpressao();
-                saida = conversaoPosFixa(saida);
-                resultado = calculoPosFixa(saida);
-                cout << "Infixa: "<< res.getExpressao() << endl; cout<< "Pósfixa: " ; saida.imprimir(); cout<< "Resultado: " << resultado << endl;
+            getline(arquivo,line); // como foi aberto em modo texto(padrão)
+            if(line!=""){ //somenter ler linhas com conteudo
+              cout << "----------------------------------------------------------------------" << endl << "Linha >" << c+1 <<"<" << endl;
+                    Expressao res(line);
+                    Fila<string> saida;
+                    double resultado = 0;
+                    saida = res.validaExpressao();
+                    saida = conversaoPosFixa(saida);
+                    resultado = calculoPosFixa(saida);
+                    cout << "Infixa: "<< res.getExpressao() << endl; cout<< "Pósfixa: " ; saida.imprimir(); cout<< "Resultado: " << resultado << endl;
+            }
             c++;
          }
                 cout << "----------------------------------------------------------------------" << endl ;
