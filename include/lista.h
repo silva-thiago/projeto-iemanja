@@ -16,7 +16,7 @@ template <typename T>// Definicao antecipada do template para o operador de adi�
 T operator+(ListaLigada<T> const &, int);
 
 /**
-* @breaf Estrutura de nó básica para a composição da lista
+* @brief Estrutura de nó básica para a composição da lista
 */
 template <typename T>
 struct no {
@@ -25,7 +25,7 @@ struct no {
 };
 
 /** 
- * @breaf Definição da classe ListaLigada
+ * @brief Definição da classe ListaLigada
  * @detail Define uma lista simplesmente encadeada de tipo genérico
  */
 template <typename T>

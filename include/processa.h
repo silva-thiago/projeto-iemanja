@@ -35,14 +35,14 @@ public:
 	~Processa();
 
 	/** 
-	 * @breaf Método que descreve a prioridades dos operadores matemáticos
+	 * @brief Método que descreve a prioridades dos operadores matemáticos
 	 * @param char - Recebe o caracter referente a operação
 	 * @return Retorna inteiro de 2 a 5 de acordo com o operando
 	 */
 	int prioridade(char operador);
 
 	/** 
-	 * @breaf Método que converte uma expressão algébrica infixa para posfixa
+	 * @brief Método que converte uma expressão algébrica infixa para posfixa
 	 * @detail A conversão é realizada com o auxílio de 3 estruturas. Fila de entrada,
 	 * uma Pilha para operadore e "()" e uma Fila para saída
 	 * @param Fila<string> - Recebe uma fila que contém uma expressão algébrica infixa
@@ -51,7 +51,7 @@ public:
 	Fila<string> conversaoPosFixa(Fila<string> entrada);
 
 	/** 
-	 * @breaf Método que calcula uma expressão algébrica posfixa
+	 * @brief Método que calcula uma expressão algébrica posfixa
 	 * @detail Utiliza uma fila que contem a expressão posfixa e uma pilha de operandos
 	 * que será responsável por receber todos os operandos existentes na fila
 	 * @param Fila<string> - Recebe uma fila que contém uma expressão algébrica posfixa
