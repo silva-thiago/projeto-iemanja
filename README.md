@@ -1,7 +1,7 @@
 # IEMANJA<br>
 #### Identificador de Expressões Malformadas e Avaliador de Notações Julgadas Adequadas<br>
 
-###### UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - UFRN<br>
+UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - UFRN<br>
 Projeto final da disciplina de Estruturas de Dados Básicas I<br>
 IMD0029 – ESTRUTURAS DE DADOS BÁSICAS I <br>
 Professor Alyppyo Coutinho<br>
@@ -29,7 +29,7 @@ A entrada de dados consistirá de um arquivo de texto simples, o qual conterá d
 
 ### Instruções de compilação
 Ultilizando o utilitário make:
-- make 
+- make
 > copila e liga todos ficheiros necessário, gerar lib e o executável
 - make doc
 > gera uma documentação em HTML 
