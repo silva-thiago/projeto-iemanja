@@ -1,9 +1,9 @@
 /**
  * @file	lista.h
  * @brief	Implementação da classe ListaLigada em C++
- * @author	Bruno César Lopes Silva
+ * @author	Bruno e Eliaquim
  * @since	21/06/2018
- * @date	22/06/2018
+ * @date	24/06/2018
  */
 
 #ifndef LISTALIGADA_H
@@ -11,8 +11,12 @@
 
 #include <iostream>
 
+template <typename T> class ListaLigada; // Declaracao antecipada da classe
+template <typename T>// Definicao antecipada do template para o operador de adição
+T operator+(ListaLigada<T> const &, int);
+
 /**
-* @breaf Estrutura de nó básica para a composição da lista
+* @brief Estrutura de nó básica para a composição da lista
 */
 template <typename T>
 struct no {
@@ -21,7 +25,7 @@ struct no {
 };
 
 /** 
- * @breaf Definição da classe ListaLigada
+ * @brief Definição da classe ListaLigada
  * @detail Define uma lista simplesmente encadeada de tipo genérico
  */
 template <typename T>
@@ -108,6 +112,13 @@ public:
 	* @brief Método para imprimir o conteúdo da lista
 	*/
 	void imprimir();
+	/**
+	* @brief Sobrecarga do operador de adição
+	* @param l - Lista a ser manipulada
+	* @param incremento - Indice do elemento a ser retornado
+	* @return o conteúdo nó da lista no índice 'incremento'
+	*/
+	friend T operator+ <T>(ListaLigada<T> const &l, int incremento);    
 };
 
 /**
@@ -274,6 +285,17 @@ void ListaLigada<T>::imprimir() {
 	}
 
 	std::cout << std::endl;
+}
+
+template <typename T>
+T operator+(ListaLigada<T> const & l, int incremento){
+	struct no<T> * aux = l.cabeca->proximo;
+
+    for(int i = 0; i < incremento; i++){
+        aux = aux->proximo;
+    }
+
+    return aux->conteudo;
 }
 
 #endif
