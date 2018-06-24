@@ -132,33 +132,34 @@ int Expressao::validaNumeros(){
 	}
 	
 	//retorna 0 caso não hajam erros
-	return 0;
 	*/
+	return 0;
+	
 }
 
 //funcao que verifica se exite um parenteses de fechamento para cada um de abertura
 bool Expressao::validaParenteses(){
 
-	stack<char> expTemp;
+	Pilha<char> expTemp;
 
 	 bool valid = false;
 
 	 for(int i=0; i < (int)expressao.size(); i++) {
 		//busca abertura `(`
 		if(expressao[i] == '(')
-		 	expTemp.push(expressao[i]);
+		 	expTemp.insereNoTopo(expressao[i]);
 		//caso entro um fechamento `)` 	
 		else if(expressao[i] == ')'){ 
 				//verifica se tem um de abertura na pilha (pilha limpa nao tem expTemp.empty() ==true)
-	  		 	if(expTemp.empty())
+	  		 	if(expTemp.evazio())
 			  		return false;
 			  	else
-	  				expTemp.pop(); //se tiver retira... e prossegue a varredura
+	  				expTemp.removeDoTopo(); //se tiver retira... e prossegue a varredura
  		}
  	}
  	
  	//pilha tem q esta vazia no final (true)
- 	valid = expTemp.empty();
+ 	valid = expTemp.evazio();
 
   if(valid)
   	return true;
@@ -225,7 +226,7 @@ Fila<string> Expressao::validaExpressao(){
 		exit(1);
 	}
 
-	//se passar por todas validacao retorna true=ok
+	//se passar por todas validacao retorna a fila
 	return filaSaida;
 }
 
