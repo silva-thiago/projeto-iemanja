@@ -2,6 +2,7 @@
 #include <iostream>
 #include <sstream>
 
+using std::queue;
 using std::stringstream;
 
 Expressao::Expressao():expressao(""){}
@@ -34,7 +35,7 @@ int Expressao::validaCaracteres(){
 	}
 	//adiciona conteudo do buffer na fila
 	while(ss >> aux){
-		filaEntrada.insereNoFinal(aux);
+		filaEntrada.push(aux);
 	}
 	//expressao ok ok=0
 	return 0;
@@ -42,9 +43,8 @@ int Expressao::validaCaracteres(){
 }
 //funcao que verifica se os numeros da expressao sao validos
 int Expressao::validaNumeros(){
-	/*
 	//iterador que percorre a fila de entrada
-	auto iterador = &filaEntrada.getPrimeiroElemento();
+	auto iterador = &filaEntrada.front();
 	//auxiliar para manipular variavél no código como 'aux' ao invés de '*iterador'
 	string aux = *iterador;	
 	
@@ -61,7 +61,7 @@ int Expressao::validaNumeros(){
 	bool possuiNum = false;
 	
 	//percorre a fila de entrada
-	for(int i = 0; i < (int) filaEntrada.getTamanho(); i++){
+	for(int i = 0; i < (int) filaEntrada.size(); i++){
 
 		//a variável possuiNum é reinicializada para false
 		possuiNum = false;				
@@ -130,36 +130,33 @@ int Expressao::validaNumeros(){
 		//incrementa o iterador para acessar o próximo bloco da fila de entrada
 		iterador++;	
 	}
-	
 	//retorna 0 caso não hajam erros
-	*/
 	return 0;
-	
 }
 
 //funcao que verifica se exite um parenteses de fechamento para cada um de abertura
 bool Expressao::validaParenteses(){
 
-	Pilha<char> expTemp;
+	stack<char> expTemp;
 
 	 bool valid = false;
 
 	 for(int i=0; i < (int)expressao.size(); i++) {
 		//busca abertura `(`
 		if(expressao[i] == '(')
-		 	expTemp.insereNoTopo(expressao[i]);
+		 	expTemp.push(expressao[i]);
 		//caso entro um fechamento `)` 	
 		else if(expressao[i] == ')'){ 
 				//verifica se tem um de abertura na pilha (pilha limpa nao tem expTemp.empty() ==true)
-	  		 	if(expTemp.evazio())
+	  		 	if(expTemp.empty())
 			  		return false;
 			  	else
-	  				expTemp.removeDoTopo(); //se tiver retira... e prossegue a varredura
+	  				expTemp.pop(); //se tiver retira... e prossegue a varredura
  		}
  	}
  	
  	//pilha tem q esta vazia no final (true)
- 	valid = expTemp.evazio();
+ 	valid = expTemp.empty();
 
   if(valid)
   	return true;
@@ -175,23 +172,20 @@ bool Expressao::expressaoMalformada(){
 	int outros = 0;
 	int colchetes = 0;
 
-	while(!filaEntrada.evazio()){
+	while(!filaEntrada.empty()){
 		//conta os operandos
-		if((filaEntrada.getPrimeiroElemento() == "+") || (filaEntrada.getPrimeiroElemento() == "-") || (filaEntrada.getPrimeiroElemento() == "*") || (filaEntrada.getPrimeiroElemento() == "/")){
+		if((filaEntrada.front() == "+") || (filaEntrada.front() == "-") || (filaEntrada.front() == "*") || (filaEntrada.front() == "/")){
 			operando++;
-			filaSaida.insereNoFinal(filaEntrada.getPrimeiroElemento());
-			filaEntrada.removeNoInicio();
+			filaEntrada.pop();
 		}else
-			if((filaEntrada.getPrimeiroElemento() == "(") || (filaEntrada.getPrimeiroElemento() == ")")){ //conta os colchetes
+			if((filaEntrada.front() == "(") || (filaEntrada.front() == ")")){ //conta os colchetes
 
 				colchetes++;
-				filaSaida.insereNoFinal(filaEntrada.getPrimeiroElemento());
-				filaEntrada.removeNoInicio();
+				filaEntrada.pop();
 				
 			}else{
 				outros++;
-				filaSaida.insereNoFinal(filaEntrada.getPrimeiroElemento());
-				filaEntrada.removeNoInicio();
+				filaEntrada.pop();
 			}
 	}
 			
@@ -206,31 +200,24 @@ bool Expressao::expressaoMalformada(){
 }
 
 //funcao encarregada de fazer todas as outras verificacoes juntas
-Fila<string> Expressao::validaExpressao(){
+bool Expressao::validaExpressao(){
 
 	if(validaCaracteres() != 0){
 		cout << "Erro 1 - Caractere inválido encontrado na posição " << validaCaracteres()  << "."<< endl;
-		exit(1);
-	}/*
+		return false;
+	}
 	if(validaNumeros()!=0){
 		cout << "Erro 2: Número inválido encontrado a partir da posição " << validaNumeros() << "." << endl;
-		exit(1);
-	}*/
+		return false;
+	}
 	if(!validaParenteses()){
 		cout << "Erro 3 - Os parênteses da expressão estão desbalanceados. " <<  endl;
-		exit(1);
 	}
 
 	if(!expressaoMalformada()){
 		cout << "Erro 4 - Expressão infixa malformada. " <<  endl;
-		exit(1);
 	}
 
-	//se passar por todas validacao retorna a fila
-	return filaSaida;
-}
-
-string Expressao::getExpressao(){
-
-	return expressao;
+	//se passar por todas validacao retorna true=ok
+	return true;
 }
