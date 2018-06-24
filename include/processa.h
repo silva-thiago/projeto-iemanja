@@ -1,17 +1,21 @@
 #ifndef PROCESSA_H
 #define PROCESSA_H
 
+#include <fstream>
 #include <iostream>
 #include <string>
 #include "fila.h"
 #include "pilha.h"
+#include "expressao.h"
 
+using namespace std;
 
 class Processa{
 private:
+		string path;
 
 public:
-	Processa();
+	Processa(string path_);
 	~Processa();
 
 	int prioridade(char operador);
