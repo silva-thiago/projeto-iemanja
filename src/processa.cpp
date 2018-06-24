@@ -5,8 +5,10 @@
  * @since	21/06/2018
  * @date	22/06/2018
  */
+#include "processa.h"
 
-using namespace std;
+Processa::Processa(string path_ = ""):path(path_){}
+Processa::~Processa(){}
 
 
 /** 
@@ -14,7 +16,7 @@ using namespace std;
  * @param char - Recebe o caracter referente a operação
  * @return Retorna inteiro de 2 a 5 de acordo com o operando
  */
-int prioridade(char operador){
+int Processa::prioridade(char operador){
     if(operador == '+' || operador == '-' ) return 4;
     if(operador == '*' || operador == '/' ) return 3;
     if(operador == '^') return 2;
@@ -29,7 +31,7 @@ int prioridade(char operador){
  * @param Fila<string> - Recebe uma fila que contém uma expressão algébrica infixa
  * @return Retorna uma fila<string> contendo a expressão algébrica posfixa
  */
-Fila<string> conversaoPosFixa(Fila<string> entrada){
+Fila<string> Processa::conversaoPosFixa(Fila<string> entrada){
     Fila<string> saida;
     Pilha<string> operadores;
 
@@ -122,7 +124,7 @@ Fila<string> conversaoPosFixa(Fila<string> entrada){
  * @param Fila<string> - Recebe uma fila que contém uma expressão algébrica posfixa
  * @return Retorna o resultado do cálculo da expressão posfixa
  */
-double calculoPosFixa(Fila<string> entrada){
+double Processa::calculoPosFixa(Fila<string> entrada){
     Pilha<string> operandos;
     /* variáveis das operações binárias
         h -> variável responsável para receber o operando 1
@@ -133,6 +135,7 @@ double calculoPosFixa(Fila<string> entrada){
     // Percorre toda fila com a expressão posfixa
     for(int i = 0; i < tamanho ; i++){
         string expressao = entrada.getPrimeiroElemento();
+
         /* Obtem um componente da fila com a expressão posfixa. Se o componente for um
         operando, insere-o na pilha de operandos; se o componente for um operador, desempilha
         dois operandos presentes na pilha e realiza a operação associada. Em seguida, empilha
@@ -170,8 +173,34 @@ double calculoPosFixa(Fila<string> entrada){
                 operandos.insereNoTopo(expressao);
                 break;
         }      
-        entrada.removeNoInicio();
+        entrada.removeNoInicio(); //falha aq ?
     }
 
     return stod(operandos.topo());
+}
+
+
+void Processa::run(){
+
+    //string line;
+   // ifstream arquivo (path, ios::in);
+
+   //   while (!arquivo.eof()){ //enquanto end of file for false continua
+        //    getline(arquivo,line); // como foi aberto em modo texto(padrão)
+            
+            Expressao res("1 + 8 + 2");
+            Fila<string> saida;
+            double resultado = 0;
+            saida = res.validaExpressao();
+            saida.imprimir();
+            resultado = calculoPosFixa(saida);
+            cout << "Infixa: "<< res.getExpressao() << "| Pósfixa: " << saida << "| Resultado: " << resultado << endl;
+
+       // }
+   // arquivo.close();
+//  }else 
+   // cout << "Erro ao abrir arquivo " << path << endl; 
+
+
+
 }
