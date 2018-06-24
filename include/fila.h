@@ -1,9 +1,9 @@
 /**
- * @file	fila.h
- * @brief	Implementação da classe Fila em C++
- * @author	Bruno César Lopes Silva
- * @since	21/06/2018
- * @date	22/06/2018
+ * @file    fila.h
+ * @brief   Implementação da classe Fila em C++
+ * @author  Bruno César Lopes Silva e Eliaquim dos Santos Costa
+ * @since   21/06/2018
+ * @date    24/06/2018
  */
 
 #ifndef FILA_H
@@ -17,6 +17,9 @@
 template <typename T> class Fila; // Declaracao antecipada da classe
 template <typename T> // Definicao antecipada do template para o operador de insercao
 std::ostream& operator<<( std::ostream&, Fila<T> const & );
+
+template <typename T>// Definicao antecipada do template para o operador de adição
+T operator+(Fila<T> const &, int);
 // --
 
 /**
@@ -83,7 +86,14 @@ class Fila{
         * @param Fila<T> f uma instância de Fila
         * @return retorna a instância do operador de inserção
         */
-        friend std::ostream& operator<< <T>( std::ostream&, Fila<T> const &f);
+        friend std::ostream& operator<< <T>( std::ostream&, Fila<T> const &f);  
+        /**
+        * @brief Sobrecarga do operador de adição
+        * @param f - Fila a ser manipulada
+        * @param incremento - Indice do elemento a ser retornado
+        * @return o conteúdo nó da fila no índice 'incremento'
+        */      
+        friend T operator+ <T>(Fila<T> const &f, int incremento);     
         
 };
 
@@ -135,6 +145,11 @@ std::ostream& operator<< ( std::ostream& o, Fila<T> const &f) {
     for(int i = 0; i < (int)f.getTamanho(); i++)
         o << f.getElemento(i);
  */    return o;
+}
+
+template <typename T>
+T operator+(Fila<T> const &f, int incremento){    
+    return f.fila + incremento;
 }
 
 #endif
