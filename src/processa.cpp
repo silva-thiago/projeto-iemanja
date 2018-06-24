@@ -191,12 +191,14 @@ void Processa::run(){
             if(line!=""){ //somenter ler linhas com conteudo
               cout << "----------------------------------------------------------------------" << endl << "Linha >" << c+1 <<"<" << endl;
                     Expressao res(line);
-                    Fila<string> saida;
-                    double resultado = 0;
-                    saida = res.validaExpressao();
-                    saida = conversaoPosFixa(saida);
-                    resultado = calculoPosFixa(saida);
-                    cout << "Infixa: "<< res.getExpressao() << endl; cout<< "Pósfixa: " ; saida.imprimir(); cout<< "Resultado: " << resultado << endl;
+                    if(res.validaExpressao()){ //so processar se passar na validacao
+                        Fila<string> saida;
+                        saida = res.getFilaSaida();
+                        saida = conversaoPosFixa(saida);
+                        double resultado = 0;
+                        resultado = calculoPosFixa(saida);
+                        cout << "Infixa: "<< res.getExpressao() << endl; cout<< "Pósfixa: " ; saida.imprimir(); cout<< "Resultado: " << resultado << endl;
+                    }
             }
             c++;
          }

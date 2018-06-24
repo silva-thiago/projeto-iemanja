@@ -263,27 +263,35 @@ bool Expressao::expressaoMalformada(){
  * e encerra o programa, caso passe por todas retorna a filaSaida da classe
  * @return Retorna Fila<string> filaSaida
  */
-Fila<string> Expressao::validaExpressao(){
+bool Expressao::validaExpressao(){
 
 	if(validaCaracteres() != 0){
 		cout << "Erro 1 - Caractere inválido encontrado na posição " << validaCaracteres()  << "."<< endl;
-		exit(1);
+		return false;
 	}/*
 	if(validaNumeros()!=0){
 		cout << "Erro 2: Número inválido encontrado a partir da posição " << validaNumeros() << "." << endl;
-		exit(1);
+		return false;
 	}*/
 	if(!validaParenteses()){
 		cout << "Erro 3 - Os parênteses da expressão estão desbalanceados. " <<  endl;
-		exit(1);
+		return false;
 	}
 
 	if(!expressaoMalformada()){
 		cout << "Erro 4 - Expressão infixa malformada. " <<  endl;
-		exit(1);
+		return false;
 	}
 
-	//se passar por todas validacao retorna a fila
+	return true;
+}
+
+/** 
+ * @breaf retorna atributo da classe
+ * @return o atributo da classe - Fila<string>
+*/
+Fila<string> Expressao::getFilaSaida(){
+
 	return filaSaida;
 }
 

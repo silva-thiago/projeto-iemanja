@@ -34,7 +34,6 @@ public:
 	void setExpressao(string expressao_);
 	string getExpressao();
 
-	//valida a expressao <retorna posicao do caractere invalido ou 0=ok>
 	int validaCaracteres();
 
 	int validaNumeros();
@@ -42,8 +41,10 @@ public:
 	bool validaParenteses();
 
 	bool expressaoMalformada();
-	//apos validacoes retorna a fila caso ok
-	Fila<string> validaExpressao();
+
+	bool validaExpressao();
+
+	Fila<string> getFilaSaida();
 
 
 };
