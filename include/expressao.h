@@ -1,5 +1,5 @@
 /**
- * @file	expressao.cpp
+ * @file	expressao.h
  * @brief	Cabeçalho da classe expressao em C++
  * @author	David e Eliaquim
  * @since	21/06/2018
