@@ -173,7 +173,11 @@ double Processa::calculoPosFixa(Fila<string> entrada){
                 operandos.insereNoTopo(expressao);
                 break;
         }      
+<<<<<<< HEAD
         entrada.removeNoInicio(); 
+=======
+        entrada.removeNoInicio(); //falha aq ?
+>>>>>>> d5d6eda71fe9827af54ac39d7c5dd0640c94db83
     }
 
     return stod(operandos.topo());
@@ -182,6 +186,7 @@ double Processa::calculoPosFixa(Fila<string> entrada){
 
 void Processa::run(){
 
+<<<<<<< HEAD
     string line;
     ifstream arquivo(path, ios::in);
     if (arquivo.is_open() && arquivo.good()){
@@ -206,5 +211,27 @@ void Processa::run(){
     arquivo.close();
   }else 
      cout << "Erro ao abrir arquivo " << path << endl; 
+=======
+    //string line;
+   // ifstream arquivo (path, ios::in);
+
+   //   while (!arquivo.eof()){ //enquanto end of file for false continua
+        //    getline(arquivo,line); // como foi aberto em modo texto(padrão)
+            
+            Expressao res("1 + 8 + 2");
+            Fila<string> saida;
+            double resultado = 0;
+            saida = res.validaExpressao();
+            saida.imprimir();
+            resultado = calculoPosFixa(saida);
+            cout << "Infixa: "<< res.getExpressao() << "| Pósfixa: " << saida << "| Resultado: " << resultado << endl;
+
+       // }
+   // arquivo.close();
+//  }else 
+   // cout << "Erro ao abrir arquivo " << path << endl; 
+
+
+>>>>>>> d5d6eda71fe9827af54ac39d7c5dd0640c94db83
 
 }
