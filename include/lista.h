@@ -45,19 +45,12 @@ public:
 	*/
 	~ListaLigada();
 
-<<<<<<< HEAD
-=======
 public:
->>>>>>> master
 	/**
 	* @brief Método que insere valor no final da lista
 	* @param T - recebe o valor para o novo nó
 	*/
-<<<<<<< HEAD
-	void insereNoFinal(T conteudo);
-=======
 	void insereNoFinal( T conteudo );
->>>>>>> master
 
 	/**
 	* @brief Método que insere valor no inicio da lista

@@ -52,60 +52,37 @@ PROG = $(BIN)/iemanja
 # Opcoes de compilacao
 CPPFLAGS = -Wall -pedantic -std=c++11 -ansi -I$(INC)
 
+# Lista dos arquivos objeto (.o) que formam o binario/executavel final
+OBJS = $(OBJ)/expressao.o $(OBJ)/processa.o $(OBJ)/main.o
+
 # Alvo para a compilação com informações de debug
 # Altera a flag CPPFLAGS, incluindo as opções -g -O0 e recompila todo o projeto
 debug: CPPFLAGS += -g -O0 
 debug: all
 
-all: diretorios linux
+all: diretorios $(OBJS)
+	$(CC) $(CPPFLAGS) -o $(PROG) $(OBJS)
 
 diretorios:
 	$(MKDIR_P) $(DIR_CRT)
 
 #libs .a e .so para gerar bibliotecas para o linux
-linux: expressao.a expressao.so iemanja_estatico iemanja_dinamico
+#linux: main.o iemanja
 
 windows: #libs .lib e .dll para gerar bibliotecas do windows
 
 # LINUX
 
-expressao.a: $(SRC)/expressao.cpp $(INC)/expressao.h
-	$(CC) $(CPPFLAGS) -c $(SRC)/expressao.cpp -o $(OBJ)/expressao.o
-	$(AR) rcs $(LIB)/$@ $(OBJ)/expressao.o
-	@echo "+++ [Biblioteca estática criada em $(LIB)/$@] +++"
+$(OBJ)/expressao.o: $(INC)/expressao.h
+	$(CC) $(CPPFLAGS) -c $(SRC)/expressao.cpp -o $@
 
-expressao.so: $(SRC)/expressao.cpp $(INC)/expressao.h
-	$(CC) $(CPPFLAGS) -fPIC -c $(SRC)/expressao.cpp -o $(OBJ)/expressao.o
-	$(CC) -shared -fPIC -o $(LIB)/$@ $(OBJ)/expressao.o
-	@echo "+++ [Biblioteca dinâmica criada em $(LIB)/$@] +++"
+$(OBJ)/processa.o: $(OBJ)/expressao.o $(INC)/processa.h
+	$(CC) $(CPPFLAGS) -c $(SRC)/processa.cpp -o $@
 
-iemanja_estatico:
-	$(CC) $(CPPFLAGS) $(SRC)/main.cpp $(LIB)/expressao.a -o $(BIN)/$@
-
-iemanja_dinamico:
-	$(CC) $(CPPFLAGS) $(SRC)/main.cpp $(LIB)/expressao.so -o $(BIN)/$@
+$(OBJ)/main.o: $(OBJ)/processa.o
+	$(CC) $(CPPFLAGS) -c $(SRC)/main.cpp -o $@
 
 #########
-
-# WINDOWS
-
-expressao.lib: $(SRC)/expressao.cpp $(INC)/expressao.h
-	$(CC) $(CPPFLAGS) -c $(SRC)/expressao.cpp -o $(OBJ)/expressao.o
-	$(AR) rcs $(LIB)/$@ $(OBJ)/expressao.o
-	@echo "+++ [Biblioteca estática criada em $(LIB)/$@] +++"
-
-expressao.dll: $(SRC)/expressao.cpp $(INC)/expressao.h
-	$(CC) $(CPPFLAGS) -fPIC -c $(SRC)/expressao.cpp -o $(OBJ)/expressao.o
-	$(CC) -shared -fPIC -o $(LIB)/$@ $(OBJ)/expressao.o
-	@echo "+++ [Biblioteca dinâmica criada em $(LIB)/$@] +++"
-
-iemanja_estatico.exe:
-	$(CC) $(CPPFLAGS) $(SRC)/main.cpp $(LIB)/expressao.a -o $(BIN)/$@
-
-iemanja_dinamico.exe:
-	$(CC) $(CPPFLAGS) $(SRC)/main.cpp $(LIB)/expressao.so -o $(BIN)/$@
-
-########
 
 # Alvo para a criação do arquivo Doxyfile.
 doxy:

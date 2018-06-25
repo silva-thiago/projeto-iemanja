@@ -137,12 +137,4 @@ std::ostream& operator<< ( std::ostream& o, Pilha<T> const &p) {
  */    return o;
 }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
 #endif
-=======
-#endif
->>>>>>> 829cd03facb8122e4e5635dfeafcea35f706663a
-=======
-#endif
->>>>>>> master

@@ -137,8 +137,4 @@ std::ostream& operator<< ( std::ostream& o, Fila<T> const &f) {
  */    return o;
 }
 
-<<<<<<< HEAD
 #endif
-=======
-#endif
->>>>>>> 829cd03facb8122e4e5635dfeafcea35f706663a
