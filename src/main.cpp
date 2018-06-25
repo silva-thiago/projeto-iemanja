@@ -1,16 +1,17 @@
 #include <iostream>
 #include <string>  
-#include "expressao.h"
-
+#include "processa.h"
 
 using namespace std;
 
-int main(){
+int main(int argc, char *argv[]){
 
-	Expressao n("1 + 8.2 * (15 - 5 / 2.5)");
-	if(n.validaExpressao())
-		cout << "expressao ok" << endl;
-
+	if (argc == 2) {
+		Processa arquivo(argv[1]);
+		arquivo.run();
+	}else{
+		cout << "Erro :( Para verificar um arquivo com varias expressões execute:  \n./prog /path/arquivo.txt" << endl;
+	}
 	
 
 return 0;
