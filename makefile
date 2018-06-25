@@ -50,15 +50,15 @@ PROG = $(BIN)/iemanja
 .PHONY: all clean debug doxy doc
 
 # Opcoes de compilacao
-CPPFLAGS = -Wall -pedantic -std=c++11 -ansi -I$(INC)
+CPPFLAGS = -Wall -pedantic -ansi -std=c++11 -I$(INC)
 
 # Lista dos arquivos objeto (.o) que formam o binario/executavel final
 OBJS = $(OBJ)/expressao.o $(OBJ)/processa.o $(OBJ)/main.o
 
 # Alvo para a compilação com informações de debug
 # Altera a flag CPPFLAGS, incluindo as opções -g -O0 e recompila todo o projeto
-debug: CPPFLAGS += -g -O0 
-debug: all
+#debug: CPPFLAGS += -g -O0 
+#debug: all
 
 all: diretorios $(OBJS)
 	$(CC) $(CPPFLAGS) -o $(PROG) $(OBJS)
@@ -93,6 +93,11 @@ doxy:
 doc:
 	$(RM) $(DOC)/*
 	doxygen ./Doxyfile
+
+# Alvo para a compilação com informações de debug
+# Altera a flag CPPFLAGS, incluindo as opções -g -O0 e recompila todo o projeto
+debug: CPPFLAGS += -g -O0 
+debug: all
 
 # Alvo (target) usado para limpar os arquivos temporarios (objeto)
 # gerados durante a compilacao, assim como os arquivos binarios/executaveis.
