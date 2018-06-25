@@ -182,25 +182,29 @@ double Processa::calculoPosFixa(Fila<string> entrada){
 
 void Processa::run(){
 
-    //string line;
-   // ifstream arquivo (path, ios::in);
-
-   //   while (!arquivo.eof()){ //enquanto end of file for false continua
-        //    getline(arquivo,line); // como foi aberto em modo texto(padrão)
-            
-            Expressao res("1 + 8 + 2");
-            Fila<string> saida;
-            double resultado = 0;
-            saida = res.validaExpressao();
-            saida.imprimir();
-            resultado = calculoPosFixa(saida);
-            cout << "Infixa: "<< res.getExpressao() << "| Pósfixa: " << saida << "| Resultado: " << resultado << endl;
-
-       // }
-   // arquivo.close();
-//  }else 
-   // cout << "Erro ao abrir arquivo " << path << endl; 
-
-
+    string line;
+    ifstream arquivo(path, ios::in);
+    if (arquivo.is_open() && arquivo.good()){
+        int c=0;
+        while (!arquivo.eof()){ //enquanto end of file for false continua
+            getline(arquivo,line); // como foi aberto em modo texto(padrão)
+            if(line!=""){ //somenter ler linhas com conteudo
+              cout << "----------------------------------------------------------------------" << endl << "Linha >" << c+1 <<"<" << endl;
+                    Expressao res(line);
+                    if(res.validaExpressao()){ //so processar se passar na validacao
+                        Fila<string> saida;
+                        saida = res.getFilaSaida();
+                        saida = conversaoPosFixa(saida);
+                        double resultado = 0;
+                        resultado = calculoPosFixa(saida);
+                        cout << "Infixa: "<< res.getExpressao() << endl; cout<< "Pósfixa: " ; saida.imprimir(); cout<< "Resultado: " << resultado << endl;
+                    }
+            }
+            c++;
+         }
+                cout << "----------------------------------------------------------------------" << endl ;
+    arquivo.close();
+  }else 
+     cout << "Erro ao abrir arquivo " << path << endl; 
 
 }

@@ -8,7 +8,6 @@
 
 #ifndef EXPRESSAO_H
 #define EXPRESSAO_H
-
 #include <iostream>
 using std::cout;
 using std::endl;
