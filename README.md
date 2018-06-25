@@ -27,22 +27,24 @@ A entrada de dados consistirá de um arquivo de texto simples, o qual conterá d
 (forma de implementação das estruturas)
 
 ### Instruções de compilação
-Ultilizando o utilitário make:
-- make
-> compila e liga todos ficheiros necessário, gera lib e o executável
-- make doc
-> gera uma documentação em HTML 
-- make clean
-> limpa residuos de compilação e o executável
-- make debug
-> copila com a flag -g para debug
+Ultilizando o utilitário make:<br>
+### make<br>
+> compila e liga todos ficheiros necessário, gera lib e o executável<br>
+### make doc<br>
+> gera uma documentação em HTML <br>
+### make clean<br>
+> limpa residuos de compilação e o executável<br>
+### make debug<br>
+> copila com a flag -g para debug<br>
 
-### **Executando o programa**
+### **Executando o programa**<br>
+local do executável: <b>iemanja/bin</b><br>
+
 Parametros para executar:
 1. nome do executavel
 1. caminho absoluto para o arquivo de expressões
 ### EXEMPLO:
->./prog /caminhodoarquivo.txt
+>./iemaja /caminhodoarquivo.txt
 
 ## Autores
 [Eliaquim dos Santos](https://github.com/eliaquimdossantos "Eliaquim dos Santos")<br>
