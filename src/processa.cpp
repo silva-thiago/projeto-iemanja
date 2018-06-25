@@ -173,11 +173,7 @@ double Processa::calculoPosFixa(Fila<string> entrada){
                 operandos.insereNoTopo(expressao);
                 break;
         }      
-<<<<<<< HEAD
         entrada.removeNoInicio(); 
-=======
-        entrada.removeNoInicio(); //falha aq ?
->>>>>>> d5d6eda71fe9827af54ac39d7c5dd0640c94db83
     }
 
     return stod(operandos.topo());
@@ -186,32 +182,6 @@ double Processa::calculoPosFixa(Fila<string> entrada){
 
 void Processa::run(){
 
-<<<<<<< HEAD
-    string line;
-    ifstream arquivo(path, ios::in);
-    if (arquivo.is_open() && arquivo.good()){
-        int c=0;
-        while (!arquivo.eof()){ //enquanto end of file for false continua
-            getline(arquivo,line); // como foi aberto em modo texto(padrão)
-            if(line!=""){ //somenter ler linhas com conteudo
-              cout << "----------------------------------------------------------------------" << endl << "Linha >" << c+1 <<"<" << endl;
-                    Expressao res(line);
-                    if(res.validaExpressao()){ //so processar se passar na validacao
-                        Fila<string> saida;
-                        saida = res.getFilaSaida();
-                        saida = conversaoPosFixa(saida);
-                        double resultado = 0;
-                        resultado = calculoPosFixa(saida);
-                        cout << "Infixa: "<< res.getExpressao() << endl; cout<< "Pósfixa: " ; saida.imprimir(); cout<< "Resultado: " << resultado << endl;
-                    }
-            }
-            c++;
-         }
-                cout << "----------------------------------------------------------------------" << endl ;
-    arquivo.close();
-  }else 
-     cout << "Erro ao abrir arquivo " << path << endl; 
-=======
     //string line;
    // ifstream arquivo (path, ios::in);
 
@@ -232,6 +202,5 @@ void Processa::run(){
    // cout << "Erro ao abrir arquivo " << path << endl; 
 
 
->>>>>>> d5d6eda71fe9827af54ac39d7c5dd0640c94db83
 
 }
