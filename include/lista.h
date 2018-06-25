@@ -11,8 +11,8 @@
 
 #include <iostream>
 
-template <typename T> class ListaLigada; // Declaracao antecipada da classe
-template <typename T>// Definicao antecipada do template para o operador de adição
+template <typename T> class ListaLigada; /**< Declaracao antecipada da classe */
+template <typename T>/**< Definicao antecipada do template para o operador de adição */
 T operator+(ListaLigada<T> const &, int);
 
 /**
@@ -84,6 +84,10 @@ public:
 	*/
 	T	 getUltimoElemento();
 
+	/**
+	* @brief Método que remove o primeiro elemento da lista
+	* @return Retorna um boleano verdadeiro ou falso
+	*/
 	bool removeNoInicio();
 
 	/**
@@ -113,6 +117,7 @@ public:
 	* @brief Método para imprimir o conteúdo da lista
 	*/
 	void imprimir();
+
 	/**
 	* @brief Sobrecarga do operador de adição
 	* @param l - Lista a ser manipulada

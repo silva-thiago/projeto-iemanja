@@ -86,7 +86,8 @@ class Fila{
         * @param Fila<T> f uma instância de Fila
         * @return retorna a instância do operador de inserção
         */
-        friend std::ostream& operator<< <T>( std::ostream&, Fila<T> const &f);  
+        friend std::ostream& operator<< <T>( std::ostream&, Fila<T> const &f);
+          
         /**
         * @brief Sobrecarga do operador de adição
         * @param f - Fila a ser manipulada

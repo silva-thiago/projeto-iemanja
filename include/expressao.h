@@ -32,7 +32,6 @@ private:
 	Fila<string> filaSaida;
 	Pilha<string> operadores;
 
-
 public:
 
 	/**

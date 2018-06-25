@@ -186,12 +186,12 @@ void Processa::run(){
     ifstream arquivo(path, ios::in);
     if (arquivo.is_open() && arquivo.good()){
         int c=0;
-        while (!arquivo.eof()){ //enquanto end of file for false continua
-            getline(arquivo,line); // como foi aberto em modo texto(padrão)
-            if(line!=""){ //somenter ler linhas com conteudo
+        while (!arquivo.eof()){ //enquanto final do arquivo for false continua
+            getline(arquivo,line); // como foi aberto em modo texto(padrão), lê linha por linha
+            if(line!=""){ //somente lê linhas com conteudo
               cout << "----------------------------------------------------------------------" << endl << "Linha >" << c+1 <<"<" << endl;
                     Expressao res(line);
-                    if(res.validaExpressao()){ //so processar se passar na validacao
+                    if(res.validaExpressao()){ //so processar se passar na validacão
                         Fila<string> saida;
                         saida = res.getFilaSaida();
                         saida = conversaoPosFixa(saida);

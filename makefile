@@ -4,7 +4,7 @@
 #			 Eliaquin
 #			 Thiago Silva
 #			 Willian Talles
-# Data:17/06/2018
+# Data: 25/06/2018
 #
 # Makefile completo separando os diferentes elementos da aplicacao como codigo (src),
 # cabecalhos (include), executáveis (build), bibliotecas (lib), etc.
@@ -55,23 +55,11 @@ CPPFLAGS = -Wall -pedantic -ansi -std=c++11 -I$(INC)
 # Lista dos arquivos objeto (.o) que formam o binario/executavel final
 OBJS = $(OBJ)/expressao.o $(OBJ)/processa.o $(OBJ)/main.o
 
-# Alvo para a compilação com informações de debug
-# Altera a flag CPPFLAGS, incluindo as opções -g -O0 e recompila todo o projeto
-#debug: CPPFLAGS += -g -O0 
-#debug: all
-
 all: diretorios $(OBJS)
 	$(CC) $(CPPFLAGS) -o $(PROG) $(OBJS)
 
 diretorios:
 	$(MKDIR_P) $(DIR_CRT)
-
-#libs .a e .so para gerar bibliotecas para o linux
-#linux: main.o iemanja
-
-windows: #libs .lib e .dll para gerar bibliotecas do windows
-
-# LINUX
 
 $(OBJ)/expressao.o: $(INC)/expressao.h
 	$(CC) $(CPPFLAGS) -c $(SRC)/expressao.cpp -o $@
