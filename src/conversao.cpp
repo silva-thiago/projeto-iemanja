@@ -1,7 +1,7 @@
 /**
  * @file	conversao.cpp
  * @brief	Implementação da classe ListaLigada em C++
- * @author	Bruno César Lopes Silva
+ * @author	Bruno César e Willian
  * @since	21/06/2018
  * @date	22/06/2018
  */
