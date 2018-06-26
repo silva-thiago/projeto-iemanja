@@ -1,4 +1,4 @@
-### IEMANJA<br>
+## IEMANJA<br>
 ### Identificador de Expressões Malformadas e Avaliador de Notações Julgadas Adequadas<br>
 
 UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - UFRN<br>
@@ -28,13 +28,13 @@ A entrada de dados consistirá de um arquivo de texto simples, o qual conterá d
 
 ### Instruções de compilação
 Ultilizando o utilitário make:<br>
-### make<br>
+#### make<br>
 > compila e liga todos ficheiros necessário, gera lib e o executável<br>
-### make doc<br>
+#### make doc<br>
 > gera uma documentação em HTML <br>
-### make clean<br>
+#### make clean<br>
 > limpa residuos de compilação e o executável<br>
-### make debug<br>
+#### make debug<br>
 > compila com a flag -g para debug<br>
 
 ### **Executando o programa**<br>
@@ -44,7 +44,7 @@ Parametros para executar:
 1. nome do executavel
 1. caminho absoluto para o arquivo de expressões
 
-### EXEMPLO:
+#### EXEMPLO
 >./iemaja /caminhodoarquivo.txt
 
 ### Autores
