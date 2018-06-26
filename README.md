@@ -1,7 +1,8 @@
-# IEMANJA<br>
+### IEMANJA<br>
 ### Identificador de Expressões Malformadas e Avaliador de Notações Julgadas Adequadas<br>
 
 UNIVERSIDADE FEDERAL DO RIO GRANDE DO NORTE - UFRN<br>
+INSTITUTO METRÓPOLE DIGITAL - IMD<br>
 Projeto final da disciplina IMD0029 – ESTRUTURAS DE DADOS BÁSICAS I <br>
 Professor Alyppyo Coutinho<br>
 
@@ -19,7 +20,6 @@ O objetivo desse projeto é verificar o domínio do conteúdo de pilhas, filas e
 ### Entrada dos dados
 A entrada de dados consistirá de um arquivo de texto simples, o qual conterá diversas linhas. Em cada linha deverá ser colocada uma expressão para análise. O programa continuará a ler o arquivo de entrada até que tenha exaurido todas as suas linhas.
 
-
 ### Estruturas utilizadas
 - Pilha 
 - Fila
@@ -28,14 +28,14 @@ A entrada de dados consistirá de um arquivo de texto simples, o qual conterá d
 
 ### Instruções de compilação
 Ultilizando o utilitário make:<br>
-#### make<br>
+### make<br>
 > compila e liga todos ficheiros necessário, gera lib e o executável<br>
-#### make doc<br>
+### make doc<br>
 > gera uma documentação em HTML <br>
-#### make clean<br>
+### make clean<br>
 > limpa residuos de compilação e o executável<br>
-#### make debug<br>
-> copila com a flag -g para debug<br>
+### make debug<br>
+> compila com a flag -g para debug<br>
 
 ### **Executando o programa**<br>
 local do executável: <b>iemanja/bin</b><br>
@@ -43,10 +43,11 @@ local do executável: <b>iemanja/bin</b><br>
 Parametros para executar:
 1. nome do executavel
 1. caminho absoluto para o arquivo de expressões
+
 ### EXEMPLO:
 >./iemaja /caminhodoarquivo.txt
 
-## Autores
+### Autores
 [Eliaquim dos Santos](https://github.com/eliaquimdossantos "Eliaquim dos Santos")<br>
 [David Franklin](https://github.com/d4v3s "David Franklin")<br>
 [Bruno César](https://github.com/babbujah "Bruno César")<br>
